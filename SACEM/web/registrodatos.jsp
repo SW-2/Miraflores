@@ -4,6 +4,12 @@
     Author     : Jorge Garcia
 --%>
 
+<%-- 
+    Document   : registrodatos
+    Created on : 11-Jun-2013, 08:57:02
+    Author     : Jorge Garcia
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
