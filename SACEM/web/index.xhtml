@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        
+        <form action="ServletPersona" method="POST">
+            Cedula: <input name="cedula"></input><br/>
+            Nombres: <input name="nombres"></input><br/>
+            Apellidos: <input name="apellidos"></input><br/>
+            Direccion: <input name="direccion"></input><br/>
+            Telefono: <input name="telefono"></input><br/>
+            Celular: <input name="celular"></input><br/>
+            Email: <input name="email" type="email"></input><br/>
+            Fecha de Nacimiento: <input name="fechaNacimiento" type="date"></input><br/>
+            <input type="submit">Enviar</input>
+        </form>
+        <hr/>
+        
+        <h1>BUSCAR</h1>
+        
+        <f:metadata>
+            <f:viewParam id="query" name="query" value="#{personaBean.query}" />
+            <f:event type="preRenderView" listener="#{personaBean.search}" />
+        </f:metadata>
+        <form>
+            <label for="query">Query</label>
+            <input type="text" name="query" value="#{param.query}" />
+            <input type="submit" value="Search" />
+            <h:message for="query" />
+        </form>
+        
+    <h:form id="form">
+        <p:dataTable id="personas" var="result" value="#{personaBean.results}"
+                     rowKey="#{result.perCedula}"
+                     selection="#{personaBean.selectedPersona}" selectionMode="single"> 
+            
+            
+            <p:column headerText="Cedula">
+                #{result.perCedula}
+            </p:column>
+            <p:column headerText="Apellidos">
+                #{result.perApellidos}
+            </p:column>
+            <p:column headerText="Nombres">
+                #{result.perNombres}
+            </p:column>            
+        </p:dataTable>
+    
+        
+        <p:dialog id="dialog" header="Detalles" widgetVar="perDialog" resizable="false"  
+                showEffect="fade" hideEffect="explode">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+            <f:facet name="header">  
+                #{personaBean.selectedPersona.perCedula}
+            </f:facet>  
+  
+            <h:outputText value="Apellidos:" />  
+            <h:outputText value="#{personaBean.selectedPersona.perApellidos}" />  
+  
+            <h:outputText value="Nombres:" />  
+            <h:outputText value="#{personaBean.selectedPersona.perNombres}" />  
+  
+            <h:outputText value="Fecha :" />  
+            <h:outputText value="#{personaBean.selectedPersona.perFechaNacimiento}" />  
+        </h:panelGrid>  
+    </p:dialog>
+        
+  
+        <p:growl id="msgs" showDetail="true"/>  
+
+        <p:panel header="Double Combo" style="margin-bottom:10px;">  
+            <h:panelGrid columns="2" cellpadding="5">  
+                <p:selectOneMenu id="seccion" value="#{seccionBean.seccionId}">  
+                    <f:selectItem itemLabel="Seleccione Seccion" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.secciones}" var="sec" />  
+                    <p:ajax update="cursos" listener="#{seccionBean.handleSeccionChange()}" />  
+                </p:selectOneMenu>  
+
+                <p:selectOneMenu id="cursos" value="#{seccionBean.cursoId}">  
+                    <f:selectItem itemLabel="Seleccione Curso" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.cursos}"/>  
+                </p:selectOneMenu>  
+            </h:panelGrid>  
+
+            <p:separator />  
+
+            <p:commandButton value="Submit" update="msgs" actionListener="#{seccionBean.displayLocation(personaBean.selectedPersona)}" id="btnSubmit"/>  
+            <p:commandButton value="Es Estudiante" update="msgs" actionListener="#{personaBean.hacerEstudiante}" id="btnSubmitEst"/>
+            <p:commandButton value="Es Profesor" update="msgs" actionListener="#{personaBean.hacerProfesor}" id="btnSubmitProf"/>
+
+        </p:panel>  
+    </h:form>
+        
+        
+        
+    </h:body>
+</html>
+

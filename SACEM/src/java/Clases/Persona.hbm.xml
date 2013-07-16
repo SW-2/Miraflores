@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Persona" table="Persona" schema="dbo" catalog="miraflores">
+        <id name="perId" type="int">
+            <column name="per_id" />
+            <generator class="identity" />
+        </id>
+        <property name="perDireccion" type="string">
+            <column name="per_direccion" length="100" />
+        </property>
+        <property name="perNombres" type="string">
+            <column name="per_nombres" length="50" />
+        </property>
+        <property name="perApellidos" type="string">
+            <column name="per_apellidos" length="50" />
+        </property>
+        <property name="perFechaNacimiento" type="timestamp">
+            <column name="per_fecha_nacimiento" length="23" />
+        </property>
+        <property name="perSexo" type="java.lang.Character">
+            <column name="per_sexo" length="1" />
+        </property>
+        <property name="perTelefono" type="string">
+            <column name="per_telefono" length="10" />
+        </property>
+        <property name="perCelular" type="string">
+            <column name="per_celular" length="10" />
+        </property>
+        <property name="perEmail" type="string">
+            <column name="per_email" length="50" />
+        </property>
+        <property name="perCedula" type="string">
+            <column name="per_cedula" length="10" />
+        </property>
+        <set name="estudiantes" inverse="true">
+            <key>
+                <column name="per_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="Clases.Estudiante" />
+        </set>
+        <set name="padreFamiliasForFamiliar" inverse="true">
+            <key>
+                <column name="familiar" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="Clases.PadreFamilia" />
+        </set>
+        <set name="padreFamiliasForEstudiante" inverse="true">
+            <key>
+                <column name="estudiante" />
+            </key>
+            <one-to-many class="Clases.PadreFamilia" />
+        </set>
+        <set name="profesors" inverse="true">
+            <key>
+                <column name="per_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="Clases.Profesor" />
+        </set>
+    </class>
+</hibernate-mapping>

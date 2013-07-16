@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cursos por Seccion</title>
+    </h:head>
+    <body>
+     
+    <h:form id="form">  
+  
+        <p:growl id="msgs" showDetail="true"/>  
+
+        <p:panel header="Double Combo" style="margin-bottom:10px;">  
+            <h:panelGrid columns="2" cellpadding="5">  
+                <p:selectOneMenu id="seccion" value="#{seccionBean.seccionId}">  
+                    <f:selectItem itemLabel="Seleccione Seccion" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.secciones}" var="sec" />  
+                    <p:ajax update="cursos"  
+                            listener="#{seccionBean.handleSeccionChange()}" />  
+                </p:selectOneMenu>  
+
+                <p:selectOneMenu id="cursos" value="#{seccionBean.cursoId}">  
+                    <f:selectItem itemLabel="Seleccione Curso" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.cursos}"/>  
+                </p:selectOneMenu>  
+            </h:panelGrid>  
+
+            <p:separator />  
+
+            <p:commandButton value="Submit" update="msgs" actionListener="#{seccionBean.displayLocation}" id="btnSubmit"/>  
+
+        </p:panel>  
+    </h:form>  
+    
+    </body>
+</html>

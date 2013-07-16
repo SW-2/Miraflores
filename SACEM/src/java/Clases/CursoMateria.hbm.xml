@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.CursoMateria" table="Curso_materia" schema="dbo" catalog="miraflores">
+        <id name="curmatId" type="int">
+            <column name="curmat_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="profesor" class="Clases.Profesor" fetch="select">
+            <column name="per_id" not-null="false" />
+        </many-to-one>
+        <many-to-one name="materia" class="Clases.Materia" fetch="select">
+            <column name="mat_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="curso" class="Clases.Curso" fetch="select">
+            <column name="cur_id" not-null="true" />
+        </many-to-one>
+        <set name="calificacionEstudiantes" inverse="true">
+            <key>
+                <column name="curmat_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CalificacionEstudiante" />
+        </set>
+    </class>
+</hibernate-mapping>

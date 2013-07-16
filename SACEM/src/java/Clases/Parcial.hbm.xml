@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Parcial" table="Parcial" schema="dbo" catalog="miraflores">
+        <id name="parcId" type="int">
+            <column name="parc_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="periodo" class="Clases.Periodo" fetch="select">
+            <column name="per_id" not-null="true" />
+        </many-to-one>
+        <property name="parcFechaaInicio" type="timestamp">
+            <column name="parc_fechaa_inicio" length="23" />
+        </property>
+        <property name="parcFechaFin" type="timestamp">
+            <column name="parc_fecha_fin" length="23" not-null="true" />
+        </property>
+        <property name="parcDescripcion" type="string">
+            <column name="parc_descripcion" length="10" />
+        </property>
+        <property name="parcPorcentaje" type="java.lang.Double">
+            <column name="parc_porcentaje" precision="53" scale="0" />
+        </property>
+        <set name="calificacionEstudiantes" inverse="true">
+            <key>
+                <column name="parc_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CalificacionEstudiante" />
+        </set>
+    </class>
+</hibernate-mapping>

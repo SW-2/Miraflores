@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.CalificacionEstudiante" table="calificacion_estudiante" schema="dbo" catalog="miraflores">
+        <id name="regestId" type="int">
+            <column name="regest_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="estudiante" class="Clases.Estudiante" fetch="select">
+            <column name="per_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="parcial" class="Clases.Parcial" fetch="select">
+            <column name="parc_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cursoMateria" class="Clases.CursoMateria" fetch="select">
+            <column name="curmat_id" not-null="true" />
+        </many-to-one>
+        <property name="calestFecha" type="timestamp">
+            <column name="calest_fecha" length="23" />
+        </property>
+        <property name="calestNota" type="java.lang.Double">
+            <column name="calest_nota" precision="53" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Materias</title>
+    </h:head>
+    <h:body>
+        
+        <f:metadata>
+            <f:viewParam id="query" name="query" value="#{materiaBean.query}" />
+            <f:event type="preRenderView" listener="#{materiaBean.search}" />
+        </f:metadata>
+        <form>
+            <label for="query">Query</label>
+            <input type="text" name="query" value="#{param.query}" />
+            <input type="submit" value="Search" />
+            <h:message for="query" />
+        </form>
+        
+    <h:form id="form">
+        <p:growl id="growl" showDetail="true"/> 
+        
+        <p:dataTable id="materias" var="result" value="#{materiaBean.results}"
+                     rowKey="#{result.matId}"
+                     paginator="true"
+                     rows="5"
+                     selection="#{materiaBean.selected}" selectionMode="single"> 
+            
+            <p:ajax event="rowSelect" listener="#{materiaBean.onRowSelect}"   
+                    update=":form:display :form:growl" oncomplete="perDialog.show()" />  
+        <p:ajax event="rowUnselect" listener="#{materiaBean.onRowUnselect}" update=":form:growl"/>  
+            
+            
+            <p:column headerText="ID">
+                #{result.matId}
+            </p:column>
+            <p:column headerText="Nombre">
+                #{result.matNombre}
+            </p:column>
+        </p:dataTable>
+    
+        
+        <p:dialog id="dialog" header="Detalles" widgetVar="perDialog" resizable="false"  
+                showEffect="fade" hideEffect="explode">  
+  
+            <h:panelGrid id="display" columns="2" cellpadding="4">  
+
+                <f:facet name="header">  
+                    #{materiaBean.selected.matNombre}
+                </f:facet>  
+
+                <h:outputText value="ID:" />  
+                <h:outputText value="#{materiaBean.selected.matId}" />  
+
+                <h:outputText value="Materia: " />  
+                <h:outputText value="#{materiaBean.selected.matNombre}" />   
+            </h:panelGrid>  
+        </p:dialog>
+        
+    </h:form>        
+        
+        
+        
+        
+    </h:body>
+</html>
