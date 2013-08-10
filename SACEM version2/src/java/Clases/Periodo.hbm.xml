@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Periodo" table="Periodo" schema="dbo" catalog="miraflores2">
+        <id name="perId" type="int">
+            <column name="per_id" />
+            <generator class="identity" />
+        </id>
+        <property name="perAnioLectivo" type="java.lang.Integer">
+            <column name="per_anio_lectivo" />
+        </property>
+        <property name="perDescripcion" type="string">
+            <column name="per_descripcion" length="20" />
+        </property>
+        <set name="parcials" inverse="true">
+            <key>
+                <column name="per_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.Parcial" />
+        </set>
+    </class>
+</hibernate-mapping>

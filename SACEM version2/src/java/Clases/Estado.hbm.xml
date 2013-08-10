@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Estado" table="Estado" schema="dbo" catalog="miraflores2">
+        <id name="estadoId" type="string">
+            <column name="estado_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="estadoDescripcion" type="string">
+            <column name="estado_descripcion" length="10" />
+        </property>
+        <set name="estudiantes" inverse="true">
+            <key>
+                <column name="estado_id" length="10" />
+            </key>
+            <one-to-many class="Clases.Estudiante" />
+        </set>
+        <set name="cursoEstudiantes" inverse="true">
+            <key>
+                <column name="estado_id" length="10" />
+            </key>
+            <one-to-many class="Clases.CursoEstudiante" />
+        </set>
+        <set name="materias" inverse="true">
+            <key>
+                <column name="estado_id" length="10" />
+            </key>
+            <one-to-many class="Clases.Materia" />
+        </set>
+        <set name="profesors" inverse="true">
+            <key>
+                <column name="estado_id" length="10" />
+            </key>
+            <one-to-many class="Clases.Profesor" />
+        </set>
+    </class>
+</hibernate-mapping>

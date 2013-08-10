@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Seccion" table="Seccion" schema="dbo" catalog="miraflores2">
+        <id name="secId" type="int">
+            <column name="sec_id" />
+            <generator class="identity" />
+        </id>
+        <property name="secAnioLectivo" type="java.lang.Integer">
+            <column name="sec_anio_lectivo" />
+        </property>
+        <property name="secNombre" type="string">
+            <column name="sec_nombre" length="15" />
+        </property>
+        <property name="secInicio" type="java.lang.Integer">
+            <column name="sec_inicio" />
+        </property>
+        <property name="secFin" type="java.lang.Integer">
+            <column name="sec_fin" />
+        </property>
+        <set name="cursos" inverse="true">
+            <key>
+                <column name="sec_id" />
+            </key>
+            <one-to-many class="Clases.Curso" />
+        </set>
+    </class>
+</hibernate-mapping>

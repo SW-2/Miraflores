@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pagina de representantes</title>
+    </h:head>
+    <h:body>
+        
+        <f:metadata>
+            <f:viewParam id="query2" name="query2" value="#{personaBean.query}" />
+            <f:event type="preRenderView" listener="#{personaBean.search}" />
+            <f:viewParam id="query1" name="query1" value="#{representanteBean.query}" />
+            <f:event type="preRenderView" listener="#{representanteBean.search}" />
+        </f:metadata>
+        
+        <h1>Representantes</h1>
+        <form>
+            <label for="query1">Query</label>
+            <input type="text" name="query1" value="#{param.query}" />
+            <input type="submit" value="Search" />
+            <h:message for="query1" />
+        </form>
+        
+        <h:form id="form">
+        
+    <h:form id="form1">
+        <p:growl id="growl1" showDetail="true"/> 
+        <p:dataTable id="personas1" var="result" value="#{representanteBean.results}"
+                     rowKey="#{result.perCedula}"
+                     selection="#{representanteBean.selectedPersona}" selectionMode="single"> 
+            
+            <p:ajax event="rowSelect" listener="#{representanteBean.onRowSelect}"   
+                    update=":form:form1:display1 :form:form1:growl1" oncomplete="perDialog1.show()" />  
+        <p:ajax event="rowUnselect" listener="#{representanteBean.onRowUnselect}" update=":form:form1:growl1"/>  
+            
+            
+            <p:column headerText="Cedula">
+                #{result.perCedula}
+            </p:column>
+            <p:column headerText="Apellidos">
+                #{result.perApellidos}
+            </p:column>
+            <p:column headerText="Nombres">
+                #{result.perNombres}
+            </p:column>            
+        </p:dataTable>
+    
+        
+        <p:dialog id="dialog1" header="Detalles" widgetVar="perDialog1" resizable="false"  
+                showEffect="fade" hideEffect="explode">  
+  
+                <h:panelGrid id="display1" columns="2" cellpadding="4">  
+                    <f:facet name="header">  
+                        #{representanteBean.selectedPersona.perCedula}
+                    </f:facet>  
+
+                    <h:outputText value="Apellidos:" />  
+                    <h:outputText value="#{representanteBean.selectedPersona.perApellidos}" />  
+
+                    <h:outputText value="Nombres:" />  
+                    <h:outputText value="#{representanteBean.selectedPersona.perNombres}" />  
+
+                    <h:outputText value="Fecha :" />  
+                    <h:outputText value="#{representanteBean.selectedPersona.perFechaNacimiento}" />  
+                </h:panelGrid>  
+            </p:dialog>
+        </h:form>
+        <hr/>
+        <hr/>
+    
+        <h1>Estudiantes</h1>
+        <form>
+            <label for="query2">Query2</label>
+            <input type="text" name="query2" value="#{param.query}" />
+            <input type="submit" value="Search" />
+            <h:message for="query2" />
+        </form>
+        
+    <h:form id="form2">
+        <p:growl id="growl2" showDetail="true"/> 
+        <p:dataTable id="personas2" var="result" value="#{personaBean.results}"
+                     rowKey="#{result.perCedula}"
+                     selection="#{personaBean.selectedPersona}" selectionMode="single"> 
+            
+            <p:ajax event="rowSelect" listener="#{personaBean.onRowSelect}"   
+                    update=":form:form2:display2 :form:form2:growl2" oncomplete="perDialog2.show()" />  
+        <p:ajax event="rowUnselect" listener="#{personaBean.onRowUnselect}" update=":form:form2:growl2"/>  
+            
+            
+            <p:column headerText="Cedula">
+                #{result.perCedula}
+            </p:column>
+            <p:column headerText="Apellidos">
+                #{result.perApellidos}
+            </p:column>
+            <p:column headerText="Nombres">
+                #{result.perNombres}
+            </p:column>            
+        </p:dataTable>
+    
+        
+        <p:dialog id="dialog2" header="Detalles" widgetVar="perDialog2" resizable="false"  
+                showEffect="fade" hideEffect="explode">  
+  
+                <h:panelGrid id="display2" columns="2" cellpadding="4">  
+                    <f:facet name="header">  
+                        #{personaBean.selectedPersona.perCedula}
+                    </f:facet>  
+
+                    <h:outputText value="Apellidos:" />  
+                    <h:outputText value="#{personaBean.selectedPersona.perApellidos}" />  
+
+                    <h:outputText value="Nombres:" />  
+                    <h:outputText value="#{personaBean.selectedPersona.perNombres}" />  
+
+                    <h:outputText value="Fecha :" />  
+                    <h:outputText value="#{personaBean.selectedPersona.perFechaNacimiento}" />  
+                </h:panelGrid>  
+            </p:dialog>
+        </h:form>
+        <p:growl id="msgs" showDetail="true"/>  
+        <p:commandButton value="Mostrar relacion" update="msgs" actionListener="#{representanteBean.relacionar(personaBean.selectedPersona)}" id="btnRelacionar"/>  
+        </h:form>
+    </h:body>
+
+</html>

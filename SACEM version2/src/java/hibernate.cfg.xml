@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://127.0.0.1:1433;databaseName=miraflores2</property>
+    <property name="hibernate.connection.username">notas</property>
+    <property name="hibernate.connection.password">notas</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="Clases/Periodo.hbm.xml"/>
+    <mapping resource="Clases/Profesor.hbm.xml"/>
+    <mapping resource="Clases/CursoMateria.hbm.xml"/>
+    <mapping resource="Clases/Materia.hbm.xml"/>
+    <mapping resource="Clases/Seccion.hbm.xml"/>
+    <mapping resource="Clases/Estado.hbm.xml"/>
+    <mapping resource="Clases/CalificacionEstudiante.hbm.xml"/>
+    <mapping resource="Clases/Parcial.hbm.xml"/>
+    <mapping resource="Clases/Curso.hbm.xml"/>
+    <mapping resource="Clases/Parentesco.hbm.xml"/>
+    <mapping resource="Clases/CursoEstudiante.hbm.xml"/>
+    <mapping resource="Clases/PadreFamilia.hbm.xml"/>
+    <mapping resource="Clases/Persona.hbm.xml"/>
+    <mapping resource="Clases/Estudiante.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

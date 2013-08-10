@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Materias</title>
+    </h:head>
+    <h:body>
+        <p:tabView id="tabView" style="padding: 0px;margin: 0px;height: 800px; width: 1000px;margin-left: 90px; ">  
+            <p:tab id="tab1" title="Calificaciones" >
+                <h:panelGrid columns="3" cellpadding="15">   
+                <h:form id="form">
+                    Seleccione curso
+                    <p:tree id="treeSingle" value="#{cursoMateriaBean.root}" var="node"  
+                        selectionMode="single"  
+                        selection="#{cursoMateriaBean.selectedNode}">  
+
+                        <p:treeNode>  
+                            <h:outputText value="#{node}" />  
+                        </p:treeNode>  
+                    </p:tree>  
+
+                    <p:commandButton value="Ver Materias" update=":tabView:listado"
+                             actionListener="#{cursoMateriaBean.displaySelectedSingle}" id="btnDisplay"/>
+
+                </h:form>
+                    <h:form id="listado">  
+                        <p:dataTable id="materias" var="result" value="#{cursoMateriaBean.materiaDM}"
+                                rowKey="#{result.matId}"
+                                selectionMode="single"> 
+                                 <f:facet name="header">
+                                   Materias del curso
+                                 </f:facet>
+                                 <p:column>
+                                     #{result.matNombre}
+                                </p:column>  
+                
+                        </p:dataTable> 
+                    </h:form>
+                    <h:form id="nuevamat">
+                        Agregar materia
+                        <p:inputText id="nuevamateria" value="#{cursoMateriaBean.parametro}" />
+                        <p:commandButton value="Agregar" update=":tabView:listado" actionListener="#{cursoMateriaBean.agregarMateria()}"/>
+                    </h:form>
+                </h:panelGrid>
+            </p:tab>
+        </p:tabView>
+    
+    </h:body>
+</html>

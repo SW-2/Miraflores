@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Centro Educativo Miraflores</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam id="query" name="query" value="#{personaBean.query}" />
+            <f:event type="preRenderView" listener="#{personaBean.search}" />
+        </f:metadata>
+        
+    
+           <h:panelGrid columns="2" cellpadding="10" >
+                     <h1 style="margin-left: 400px;">Centro Educativo Miraflores</h1>
+                    <h:panelGrid columns="2" cellpadding="10" style="margin-left: 70%;">  
+                        <p:graphicImage id="tab1Img2"  value="/images/ayuda.jpg" />
+                        <p:graphicImage id="tab1Img"  value="/images/salir.jpg" />
+                    </h:panelGrid>
+             </h:panelGrid>
+                <p:tabView id="tabView" style="padding: 0px;margin: 0px;height: 1500px; width: 1000px;margin-left: 90px; ">   
+                   <p:tab id="tab1" title="Matriculacion" >
+                       <h:form>
+                           <p:fieldset legend="Estudiante Nuevo" toggleable="true" toggleSpeed="500" collapsed="true">  
+                                <p:ajax event="toggle" listener="#{fieldsetBean.handleToggle}"  />  
+                                  <h:panelGrid columns="1" cellpadding="10" style="margin-left: 20px;">
+                                      <p:fieldset legend="Datos Estudiante" style="width: 800px;">  
+                                            <h:panelGrid columns="2" cellpadding="10">  
+                                                <h:outputLabel  value="Nombres:" />
+                                                <p:inputText value="#{personaBean.nuevoEstudiante.perNombres}"  />
+                                            </h:panelGrid>  
+                                          <h:panelGrid columns="2" cellpadding="10">  
+                                                <h:outputLabel  value="Apellidos:" />
+                                                <p:inputText value="#{personaBean.nuevoEstudiante.perApellidos}"  />
+                                            </h:panelGrid> 
+                                          <h:panelGrid columns="4" cellpadding="15">
+                                                    <h:outputLabel  value="Fecha de Nacimiento:" />
+                                                    <p:selectOneMenu id="dia">  
+                                                              <f:selectItem itemLabel="Dia" itemValue="" />  
+                                                            <f:selectItem itemLabel="1" itemValue="1" />  
+                                                              <f:selectItem itemLabel="2" itemValue="2" />  
+                                                              <f:selectItem itemLabel="3" itemValue="3" />  
+                                                              <f:selectItem itemLabel="4" itemValue="4" />  
+                                                              <f:selectItem itemLabel="5" itemValue="5" />  
+                                                              <f:selectItem itemLabel="6" itemValue="6" />  
+                                                              <f:selectItem itemLabel="7" itemValue="7" />  
+                                                              <f:selectItem itemLabel="8" itemValue="8" />  
+                                                              <f:selectItem itemLabel="9" itemValue="9" />  
+                                                              <f:selectItem itemLabel="10" itemValue="10" />  
+                                                              <f:selectItem itemLabel="11" itemValue="11" />  
+                                                              <f:selectItem itemLabel="12" itemValue="12" />  
+                                                              <f:selectItem itemLabel="13" itemValue="13" />  
+                                                              <f:selectItem itemLabel="14" itemValue="14" />  
+                                                              <f:selectItem itemLabel="15" itemValue="15" />  
+                                                              <f:selectItem itemLabel="16" itemValue="16" />  
+                                                              <f:selectItem itemLabel="17" itemValue="17" />  
+                                                              <f:selectItem itemLabel="18" itemValue="18" />  
+                                                              <f:selectItem itemLabel="19" itemValue="19" />  
+                                                              <f:selectItem itemLabel="20" itemValue="20" />  
+                                                              <f:selectItem itemLabel="21" itemValue="21" />  
+                                                              <f:selectItem itemLabel="22" itemValue="22" />  
+                                                              <f:selectItem itemLabel="23" itemValue="23" />  
+                                                              <f:selectItem itemLabel="24" itemValue="24" />  
+                                                              <f:selectItem itemLabel="25" itemValue="25" />  
+                                                              <f:selectItem itemLabel="26" itemValue="26" />  
+                                                              <f:selectItem itemLabel="27" itemValue="27" />  
+                                                              <f:selectItem itemLabel="28" itemValue="28" />  
+                                                              <f:selectItem itemLabel="29" itemValue="29" />  
+                                                              <f:selectItem itemLabel="30" itemValue="30" />  
+                                                              <f:selectItem itemLabel="31" itemValue="31" />                                                               
+                                                    </p:selectOneMenu>
+                                                    <p:selectOneMenu id="mes">  
+                                                              <f:selectItem itemLabel="Mes" itemValue="" />  
+                                                            <f:selectItem itemLabel="Enero" itemValue="Enero" />  
+                                                              <f:selectItem itemLabel="Febrero" itemValue="Febrero" />  
+                                                             <f:selectItem itemLabel="Marzo" itemValue="Marzo" />  
+                                                             <f:selectItem itemLabel="Abril" itemValue="Abril" />  
+                                                             <f:selectItem itemLabel="Mayo" itemValue="Mayo" />  
+                                                             <f:selectItem itemLabel="Junio" itemValue="Junio" />  
+                                                             <f:selectItem itemLabel="Julio" itemValue="Julio" />  
+                                                             <f:selectItem itemLabel="Agosto" itemValue="Agosto" />  
+                                                             <f:selectItem itemLabel="Septiembre" itemValue="Septiembre" />  
+                                                             <f:selectItem itemLabel="Octubre" itemValue="Octubre" />  
+                                                             <f:selectItem itemLabel="Noviembre" itemValue="Noviembre" />  
+                                                             <f:selectItem itemLabel="Diciembre" itemValue="Diciembre" />  
+                                                    </p:selectOneMenu>
+                                                    <p:selectOneMenu id="ano">  
+                                                              <f:selectItem itemLabel="Año" itemValue="" />  
+                                                            <f:selectItem itemLabel="1990" itemValue="1990" />  
+                                                              <f:selectItem itemLabel="1991" itemValue="1991" />  
+                                                              <f:selectItem itemLabel="1992" itemValue="1992" />  
+                                                              <f:selectItem itemLabel="1993" itemValue="1993" />  
+                                                              <f:selectItem itemLabel="1994" itemValue="1994" />  
+                                                              <f:selectItem itemLabel="1995" itemValue="1995" />  
+                                                              <f:selectItem itemLabel="1996" itemValue="1996" />  
+                                                              <f:selectItem itemLabel="1997" itemValue="1997" />  
+                                                              <f:selectItem itemLabel="1998" itemValue="1998" />  
+                                                              <f:selectItem itemLabel="1999" itemValue="1999" />  
+                                                              <f:selectItem itemLabel="2000" itemValue="2000" />  
+                                                               <f:selectItem itemLabel="2001" itemValue="2001" />  
+                                                               <f:selectItem itemLabel="2002" itemValue="2002" />  
+                                                               <f:selectItem itemLabel="2003" itemValue="2003" />  
+                                                               <f:selectItem itemLabel="2004" itemValue="2004" />  
+                                                               <f:selectItem itemLabel="2005" itemValue="2005" />  
+                                                               <f:selectItem itemLabel="2006" itemValue="2006" />  
+                                                               <f:selectItem itemLabel="2007" itemValue="2007" />  
+                                                               <f:selectItem itemLabel="2008" itemValue="2008" />  
+                                                               <f:selectItem itemLabel="2009" itemValue="2009" />  
+                                                              <f:selectItem itemLabel="2010" itemValue="2010" />  
+                                                              <f:selectItem itemLabel="2011" itemValue="2011" />  
+                                                              <f:selectItem itemLabel="2012" itemValue="2012" />  
+                                                              <f:selectItem itemLabel="2013" itemValue="2013" />  
+                                                    </p:selectOneMenu>
+                                          </h:panelGrid>
+                                           <h:panelGrid columns="2" cellpadding="10">
+                                                    <h:outputLabel  value="Telefono Domicilio:" />
+                                                    <p:inputText value="#{personaBean.nuevoEstudiante.perTelefono}"  />
+                                          </h:panelGrid>
+                                           <h:panelGrid columns="2" cellpadding="10">
+                                                    <h:outputLabel  value="Direccion:" />
+                                                    <p:inputText value="#{personaBean.nuevoEstudiante.perDireccion}"  />
+                                          </h:panelGrid>
+                                        </p:fieldset>   
+                                      <p:fieldset legend="Datos Representante" style="width: 800px;">   
+                                              <h:panelGrid columns="2" cellpadding="10">  
+                                                <h:outputLabel  value="Nombres:" />
+                                                <p:inputText value="#{personaBean.nuevoRepresentante.perNombres}"  />
+                                            </h:panelGrid>  
+                                          <h:panelGrid columns="2" cellpadding="10">  
+                                                <h:outputLabel  value="Apellidos:" />
+                                                <p:inputText value="#{personaBean.nuevoRepresentante.perApellidos}"  />
+                                            </h:panelGrid> 
+                                          <h:panelGrid columns="2" cellpadding="20">
+                                                    <h:outputLabel  value="Parentesco:" />
+                                                    <p:selectOneMenu id="parentesco" value="#{parentescoBean.parentescoId}">  
+                                                              <f:selectItem itemLabel="Seleccione el tipo" itemValue="" />  
+                                                              <f:selectItems value="#{parentescoBean.parentescos}" />  
+                                                    </p:selectOneMenu>
+                                          </h:panelGrid>
+                                           <h:panelGrid columns="2" cellpadding="10">
+                                                    <h:outputLabel  value="Telefono Domicilio:" />
+                                                    <p:inputText value="#{personaBean.nuevoRepresentante.perTelefono}"  />
+                                          </h:panelGrid>
+                                           <h:panelGrid columns="2" cellpadding="10">
+                                                    <h:outputLabel  value="Direccion:" />
+                                                    <p:inputText value="#{personaBean.nuevoRepresentante.perDireccion}"  />
+                                          </h:panelGrid>
+                                      </p:fieldset>
+                                   </h:panelGrid>
+                                <p:commandButton  style="margin-left: 40%;" value="Guardar" actionListener="#{personaBean.guardarNuevo(parentescoBean.parentescoId)}"/>  
+                          </p:fieldset> 
+                       </h:form>
+                       <p:fieldset legend="Estudiante Registrado"  toggleable="true" toggleSpeed="500" style="margin-top: 15px;">  
+                            <p:ajax event="toggle" listener="#{fieldsetBean.handleToggle}"  /> 
+                            
+                                <h:panelGrid columns="3" cellpadding="15" style="margin-left:25%; ">  
+                                    
+                                    <form>
+                                        <label for="query">Query</label>
+                                        <input type="text" name="query" value="#{param.query}" />
+                                        <input type="submit" value="Search" />
+                                        <h:message for="query" />
+                                    </form>
+                                </h:panelGrid>
+                                
+                                  <h:form id="form">
+                                        <p:growl id="growl" showDetail="true"/> 
+                                        <p:dataTable id="personas" var="result" value="#{personaBean.results}"
+                                                     paginator="true"
+                                                     rows="10"
+                                                     rowKey="#{result.perCedula}"
+                                                     selection="#{personaBean.selectedPersona}" 
+                                                     selectionMode="single"> 
+
+
+
+                                            <p:column headerText="Cedula">
+                                                #{result.perCedula}
+                                            </p:column>
+                                            <p:column headerText="Apellidos">
+                                                #{result.perApellidos}
+                                            </p:column>
+                                                <p:column headerText="Nombres">
+                                                    #{result.perNombres}
+                                                </p:column>            
+                                            </p:dataTable>
+    
+        
+                                            <p:dialog id="dialog" header="Detalles" widgetVar="perDialog" resizable="false"  
+                                                    showEffect="fade" hideEffect="explode">  
+
+                                            <h:panelGrid id="display" columns="2" cellpadding="4">  
+                                                <f:facet name="header">  
+                                                    #{personaBean.selectedPersona.perCedula}
+                                                </f:facet>  
+
+                                                <h:outputText value="Apellidos:" />  
+                                                <h:outputText value="#{personaBean.selectedPersona.perApellidos}" />  
+  
+                                                <h:outputText value="Nombres:" />  
+                                                <h:outputText value="#{personaBean.selectedPersona.perNombres}" />  
+
+                                                <h:outputText value="Fecha :" />  
+                                                <h:outputText value="#{personaBean.selectedPersona.perFechaNacimiento}" />  
+                                            </h:panelGrid>  
+                                        </p:dialog>
+        
+  
+                                        <p:growl id="msgs" showDetail="true"/>  
+
+                                        <p:panel header="Seleccione Seccion y Curso" style="margin-bottom:10px;">  
+                                            <h:panelGrid columns="2" cellpadding="5">  
+                                                <p:selectOneMenu id="seccion" value="#{seccionBean.seccionId}">  
+                                                    <f:selectItem itemLabel="Seleccione Seccion" itemValue="" />  
+                                                    <f:selectItems value="#{seccionBean.secciones}" var="sec" />  
+                                                    <p:ajax update="cursos"  
+                                                            listener="#{seccionBean.handleSeccionChange()}" />  
+                                                </p:selectOneMenu>  
+
+                                                <p:selectOneMenu id="cursos" value="#{seccionBean.cursoId}">  
+                                                    <f:selectItem itemLabel="Seleccione Curso" itemValue="" />  
+                                                    <f:selectItems value="#{seccionBean.cursos}"/>  
+                                                </p:selectOneMenu>  
+                                            </h:panelGrid>  
+
+                                                <p:separator />  
+
+                                                <p:commandButton value="Submit" update="msgs" actionListener="#{seccionBean.displayLocation(personaBean.selectedPersona)}" id="btnSubmit"/>  
+
+                                            </p:panel>  
+                                        </h:form>
+                       </p:fieldset> 
+                   </p:tab>
+                </p:tabView>
+    </h:body>
+</html>
+

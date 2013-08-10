@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Curso" table="Curso" schema="dbo" catalog="miraflores2">
+        <id name="curId" type="int">
+            <column name="cur_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="seccion" class="Clases.Seccion" fetch="select">
+            <column name="sec_id" />
+        </many-to-one>
+        <property name="curCupo" type="string">
+            <column name="cur_cupo" length="10" />
+        </property>
+        <property name="curNombre" type="java.lang.Integer">
+            <column name="cur_nombre" />
+        </property>
+        <property name="curAnioLectivo" type="java.lang.Integer">
+            <column name="cur_anio_lectivo" />
+        </property>
+        <property name="curParalelo" type="java.lang.Character">
+            <column name="cur_paralelo" length="1" />
+        </property>
+        <property name="curEspecialidad" type="string">
+            <column name="cur_especialidad" length="10" />
+        </property>
+        <set name="cursoMaterias" inverse="true">
+            <key>
+                <column name="cur_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CursoMateria" />
+        </set>
+        <set name="cursoEstudiantes" inverse="true">
+            <key>
+                <column name="cur_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CursoEstudiante" />
+        </set>
+    </class>
+</hibernate-mapping>

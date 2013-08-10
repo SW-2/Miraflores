@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Materia" table="Materia" schema="dbo" catalog="miraflores2">
+        <id name="matId" type="int">
+            <column name="mat_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="estado" class="Clases.Estado" fetch="select">
+            <column name="estado_id" length="10" />
+        </many-to-one>
+        <property name="matEstado" type="java.lang.Integer">
+            <column name="mat_estado" />
+        </property>
+        <property name="matNombre" type="string">
+            <column name="mat_nombre" length="30" not-null="true" />
+        </property>
+        <set name="cursoMaterias" inverse="true">
+            <key>
+                <column name="mat_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CursoMateria" />
+        </set>
+    </class>
+</hibernate-mapping>

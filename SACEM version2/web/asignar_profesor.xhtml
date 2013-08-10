@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cursos por Seccion</title>
+    </h:head>
+    <body>
+     
+    <h:form id="form">  
+  
+        <p:growl id="msgs" showDetail="true"/>  
+
+        <p:panel header="Double Combo" style="margin-bottom:10px;">  
+            <h:panelGrid columns="3" cellpadding="5">  
+                <p:selectOneMenu id="seccion" value="#{seccionBean.seccionId}">  
+                    <f:selectItem itemLabel="Seleccione Seccion" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.secciones}" var="sec" />  
+                    <p:ajax update="cursos"  
+                            listener="#{seccionBean.handleSeccionChange()}" />  
+                </p:selectOneMenu>  
+
+                <p:selectOneMenu id="cursos" value="#{seccionBean.cursoId}">  
+                    <f:selectItem itemLabel="Seleccione Curso" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.cursos}"/>  
+                    <p:ajax update="paralelos"  
+                            listener="#{seccionBean.handleCursoChange()}" />
+                </p:selectOneMenu>
+                
+                <p:selectOneMenu id="paralelos" value="#{seccionBean.paraleloId}">  
+                    <f:selectItem itemLabel="Seleccione Paralelo" itemValue="" />  
+                    <f:selectItems value="#{seccionBean.paralelos}"/>  
+                    <p:ajax update="pars"  
+                            listener="#{seccionBean.handeParaleloChange3()}" />
+                </p:selectOneMenu>
+                
+            </h:panelGrid>  
+
+            <p:separator />  
+            
+            <h:panelGrid columns="2" cellpadding="5"> 
+                <p:dataTable selectionMode="single" selection="#{seccionBean.selectedCM}" 
+                             id="pars" value="#{seccionBean.dmMaterias}" var="curmat" 
+                             rowKey="#{curmat}" editable="true">
+                    
+                    <p:ajax event="rowSelect" oncomplete="perDialog.show()" update=":pop:display"/>
+                    
+                    <p:column headerText="MATERIA" style="width:25%">  
+                        <h:outputText value="#{curmat.materia.matNombre}" /> 
+                    </p:column> 
+                </p:dataTable>
+                
+                
+                    
+            </h:panelGrid>
+
+        </p:panel>  
+    </h:form>  
+                <p:dialog id="dialog" header="Materia" widgetVar="perDialog" resizable="false"  
+                            showEffect="fade" hideEffect="explode">
+                    <h:form id="pop">
+                    <h:panelGrid id="display" columns="2" cellpadding="4">  
+                        <f:facet name="header">  
+                            #{seccionBean.selectedCM.materia.matNombre}
+                        </f:facet>  
+                        <h:outputText value="Profesor actual: " />  
+                            #{seccionBean.selectedCM.profesor.persona.perApellidos} #{seccionBean.selectedCM.profesor.persona.perNombres}
+                        <h:outputText value="Cambiar: " />  
+                        <p:autoComplete value="#{seccionBean.selectedProfe.perId}" 
+                                        id="basicPojo" completeMethod="#{seccionBean.autoComplete}" /> 
+                        <p:commandButton value="Guardar" id="btPop" actionListener="#{seccionBean.prueba}" update="dialog"/>
+                    </h:panelGrid>   
+                    </h:form>
+                </p:dialog>
+    
+    </body>
+</html>

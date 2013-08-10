@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Centro Educativo Miraflores</title>
+    </h:head>
+    <h:body>
+               <h:panelGrid columns="2" cellpadding="10" >
+             <h1 style="margin-left: 400px;">Centro Educativo Miraflores</h1>
+            <h:panelGrid columns="2" cellpadding="10" style="margin-left: 70%;">  
+                <p:graphicImage id="tab1Img2"  value="/images/ayuda.jpg" />
+                <p:graphicImage id="tab1Img"  value="/images/salir.jpg" />
+            </h:panelGrid>
+        </h:panelGrid>
+     <p:tabView id="tabView" style="padding: 0px;margin: 0px;height: 700px; width: 1020px;margin-left: 90px; ">  
+  
+    <p:tab id="tab1" title="Tablero" >  
+        
+        <h:panelGrid columns="5" cellpadding="15" style="margin-left: 20%;">  
+             <h:outputLabel  value="Escoger Seccion:" />
+             <h:form>
+             <p:selectOneMenu id="secciones" value="#{seccionBean.seccionId}">  
+                        <f:selectItem itemLabel="Escoger" itemValue="" />  
+                        <f:selectItems value="#{seccionBean.secciones}" var="sec" />  
+                        <p:ajax update="cursos" listener="#{seccionBean.handleSeccionChange()}" /> 
+                    </p:selectOneMenu>  
+             
+             <h:outputLabel  value="Escoger Curso:" />
+             
+            <p:selectOneMenu id="cursos" value="#{seccionBean.cursoId}">   
+                        <f:selectItem itemLabel="Escoger" itemValue="" />  
+                        <f:selectItems value="#{seccionBean.cursos}"/>
+                        <p:ajax  listener="#{seccionBean.handleCursoChange()}" />  
+                    </p:selectOneMenu>
+             
+           <p:commandButton value="Buscar"/>  
+           </h:form>
+        </h:panelGrid> 
+        <h:form id="form" style="margin-top: 15px;">  
+            <p:dataTable id="cars" var="car" value="#{tableBean.mediumCarsModel}" paginator="true" rows="10"  
+                         selection="#{tableBean.selectedCar}"> 
+
+                        <f:facet name="header">
+                            Estudiantes Registrados
+                        </f:facet>
+                        <p:column selectionMode="multiple" style="width:2%" />          
+                        <p:column headerText="Apellido" >
+                            #{car.manufacturer}  
+                        </p:column>  
+
+                        <p:column headerText="Nombre">
+                            #{car.color}  
+                        </p:column>
+                           
+
+                    </p:dataTable> 
+        </h:form>      
+        <h:panelGrid columns="3" cellpadding="15" style="margin-left: 20%;">  
+             <h:outputLabel  value="Ingresar Paralelo:" />
+            <p:inputText value="#{managedbean.nombre}"  />
+           <p:commandButton value="Guardar"/>  
+        </h:panelGrid> 
+    </p:tab>  
+    
+</p:tabView> 
+    </h:body>
+</html>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Jun-2013 10:00:31 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Clases.Estudiante" table="Estudiante" schema="dbo" catalog="miraflores2">
+        <id name="perId" type="int">
+            <column name="per_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="persona" class="Clases.Persona" update="false" insert="false" fetch="select">
+            <column name="per_id" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="estado" class="Clases.Estado" fetch="select">
+            <column name="estado_id" length="10" />
+        </many-to-one>
+        <property name="estFechaIngreso" type="timestamp">
+            <column name="est_fecha_ingreso" length="23" />
+        </property>
+        <set name="cursoEstudiantes" inverse="true">
+            <key>
+                <column name="per_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CursoEstudiante" />
+        </set>
+        <set name="calificacionEstudiantes" inverse="true">
+            <key>
+                <column name="per_id" not-null="true" />
+            </key>
+            <one-to-many class="Clases.CalificacionEstudiante" />
+        </set>
+    </class>
+</hibernate-mapping>
